@@ -1,5 +1,0 @@
-function kinova_inv(kinova)
-   p = [0.58 
-   T_d = rt2tr(R,p);
-   
-end
