@@ -1,4 +1,4 @@
-function kinova = kinova_punho_dh
+function kinova = kinova_punho_dh()
     clear all;
     close all;
     a = [0;0;0;0;0;0;0];
