@@ -43,5 +43,4 @@ for j = 1:2
         Ks(j,i) = K;
     end
 end
-clear K1 K2
-Ks
+clear K1 K2 xd xds xd1 xd2 xd3 xddot xddots xddot1 xddot2 xddot3

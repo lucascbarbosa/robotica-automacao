@@ -17,4 +17,7 @@ qhome = [0 15 180 230 0 55 90]*pi/180;
 run('K_opt.m')
 switch_xd = 0;
 
-K1 = Ks(
+K1 = Ks(1,switch_xd+1);
+K2 = Ks(2,switch_xd+1);
+
+
