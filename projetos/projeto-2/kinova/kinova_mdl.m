@@ -13,15 +13,14 @@ for i=1:7
 end
 kinova = SerialLink(L,'name',' ');
 
-%% Define initial and home configurations
+%% Define initial configuration
 q0 = [0 0 0 pi/2 0 0 0];
-qhome = [0 15 180 230 0 55 90]*pi/180;
 
 %% Get optimal gains
 run('K_opt.m')
 switch_xd = 0;
 
-%% Run simulation
+%% Run simulations
 for switch_xd = 0:2
     K1 = Ks(1,switch_xd+1);
     K2 = Ks(2,switch_xd+1);
