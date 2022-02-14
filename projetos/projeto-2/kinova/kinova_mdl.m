@@ -12,6 +12,7 @@ for i=1:7
     L(i) = Link([theta(i) d(i) a(i) alpha(i) 0 offset(i)],'standard');
 end
 kinova = SerialLink(L,'name',' ');
+kinova.base=trotx(180);
 
 %% Define initial configuration
 q0 = [0 0 0 pi/2 0 0 0];
@@ -82,7 +83,5 @@ for switch_xd = 0:2
     xlabel('$x(t)$','Interpreter','latex');
     ylabel('$z(t)$','Interpreter','latex')
     title("Posição para o controlador TJ e trajetória " + int2str(switch_xd+1));
-    saveas(gcf,"imgs/x_TJ_xd"+int2str(switch_xd+1)+".png");
-
-
+    saveas(gcf,"imgs/x_TJ_xd"+int2str(switch_xd+1)+".png"); 
 end
