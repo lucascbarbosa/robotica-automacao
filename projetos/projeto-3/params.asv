@@ -1,0 +1,33 @@
+close all;
+clear all;
+load('projeto3.mat');
+%% Manipulator
+% gravity
+g = 9.81;
+
+% mass
+m1 = 0.25; %kg
+m2 = 0.15; %kg
+m = [m1 m2];
+
+% dimensions
+l1 = 0.187; %m
+l2 = 0.34; %m
+l = [l1 l2];
+b1 = 38e-3; %m
+r2 = 6.5e-3; %m
+d = [b1 r2];
+
+% initial values
+q01 = [0; -0.3];       % data01
+q02 = [0; pi/2-0.01];   % data02
+q03 = [0; pi/2-0.01];   % data03
+q0 = q01;
+
+qdot0 = [0;0];
+
+%% DC Motor
+
+
+eta = 
+
