@@ -33,6 +33,9 @@ Ra = 2.6;
 Kt = 0.00767;
 eta = 70;
 Ke = 0.00767;
+Je = 2.8e-6 + 2.27e-5 + 5e-7;
+Ja = 3.86e-7;
+J = [Je Ja]; 
 
 %% Simulate
 
@@ -50,6 +53,7 @@ plot(out.q)
 xlabel('$t$','Interpreter','latex')
 legend({'$\theta_1$ experimental','$\theta_2$ experimental','$\theta_1$ simulado','$\theta_2$ simulado'},'Interpreter','latex')
 title('$\theta(t)$ para $\theta_0 = ['+string(q0(1))+'\;'+string(q0(2))+']^T$ e motor desligado','Interpreter','latex')
+saveas(gcf,'imgs/q01.png');
 
 q0 = q02;
 data_exp = data02;
@@ -64,6 +68,7 @@ plot(out.q)
 xlabel('$t$','Interpreter','latex')
 legend({'$\theta_1$ experimental','$\theta_2$ experimental','$\theta_1$ simulado','$\theta_2$ simulado'},'Interpreter','latex')
 title('$\theta(t)$ para $\theta_0 = ['+string(q0(1))+'\;'+string(q0(2))+']^T$ e motor desligado','Interpreter','latex')
+saveas(gcf,'imgs/q02.png');
 
 q0 = q03;
 motor_switch = 1;
@@ -79,4 +84,4 @@ plot(out.q)
 xlabel('$t$','Interpreter','latex')
 legend({'$\theta_1$ experimental','$\theta_2$ experimental','$\theta_1$ simulado','$\theta_2$ simulado'},'Interpreter','latex')
 title('$\theta(t)$ para $\theta_0 = ['+string(q0(1))+'\;'+string(q0(2))+']^T$ e motor desligado','Interpreter','latex')
-
+saveas(gcf,'imgs/q03.png');
