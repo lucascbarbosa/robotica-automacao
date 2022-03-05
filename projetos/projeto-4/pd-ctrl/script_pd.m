@@ -4,7 +4,7 @@ clear all;
 
 % mass
 ml1 = 50; %kg
-ml2 = 50; %kg
+ml2 = 60; %kg
 
 mm1 = 50; %kg
 mm2 = 50; %kg
