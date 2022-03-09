@@ -48,6 +48,7 @@ Kp = wn^2;
 Kd = 2*zeta*wn;
 
 %% Plots
+
 traj = ["rapida" "lenta"];
 
 for traj_switch = 0:1
@@ -59,7 +60,7 @@ for traj_switch = 0:1
     plot(out.q)
     hold on
     plot(out.qd)
-    title("Comparação de posição para trajetória "+traj(traj_switch+1),"Interpreter","latex")
+    title("Comparacao de posicao para trajetoria "+traj(traj_switch+1),"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
     legend({'$\theta$','$\theta_d$'},"Interpreter","latex")
@@ -69,18 +70,57 @@ for traj_switch = 0:1
     plot(out.qdot)
     hold on
     plot(out.qddot)
-    title("Comparação de velocidade para trajetória "+traj(traj_switch+1),"Interpreter","latex")
+    title("Comparacao de velocidade para trajetoria "+traj(traj_switch+1),"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
     legend({'$\dot\theta$','$\dot\theta_d$'},"Interpreter","latex")
     saveas(gcf,"imgs/pd_q_qd_"+traj(traj_switch+1)+".png");
 
-    % Control
+    % Torque
     figure
     plot(out.u)
-    title("Sinal de controle para trajetória "+traj(traj_switch+1),"Interpreter","latex")
+    title("Torque para trajetoria "+traj(traj_switch+1),"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$u(t)$","Interpreter","latex")
     legend({'$u_1(t)$','$u_2(t)$'},"Interpreter","latex")
     saveas(gcf,"imgs/pd_u_"+traj(traj_switch+1)+".png");
+end
+
+%% Plots mod ml2
+
+ml2 = 60; %kg
+
+for traj_switch = 0:1
+    out = sim('pd_ctrl.slx',5);
+
+    % Position
+    figure
+    subplot(2,1,1)
+    plot(out.q)
+    hold on
+    plot(out.qd)
+    title({"Comparacao de posicao para trajetoria "+traj(traj_switch+1)+" com $ m_{l_2} $ modificada"},"Interpreter","latex")
+    xlabel("$t$","Interpreter","latex")
+    ylabel("$\theta(t)$","Interpreter","latex")
+    legend({'$\theta$','$\theta_d$'},"Interpreter","latex")
+
+    % Velocity
+    subplot(2,1,2)
+    plot(out.qdot)
+    hold on
+    plot(out.qddot)
+    title({"Comparacao de velocidade para trajetoria "+traj(traj_switch+1)+" com $ m_{l_2} $ modificada"},"Interpreter","latex")
+    xlabel("$t$","Interpreter","latex")
+    ylabel("$\theta(t)$","Interpreter","latex")
+    legend({'$\dot\theta$','$\dot\theta_d$'},"Interpreter","latex")
+    saveas(gcf,"imgs/pd_q_qd_"+traj(traj_switch+1)+"_mod.png");
+
+    % Torque
+    figure
+    plot(out.u)
+    title({"Torque para trajetoria "+traj(traj_switch+1)+" com $ m_{l_2} $ modificada"},"Interpreter","latex")
+    xlabel("$t$","Interpreter","latex")
+    ylabel("$u(t)$","Interpreter","latex")
+    legend({'$u_1(t)$','$u_2(t)$'},"Interpreter","latex")
+    saveas(gcf,"imgs/pd_u_"+traj(traj_switch+1)+"_mod.png");
 end
