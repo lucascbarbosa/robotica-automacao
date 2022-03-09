@@ -4,14 +4,17 @@ clear all;
 
 % mass
 ml1 = 50; %kg
-ml2 = 60; %kg
+ml2 = 50; %kg
+ml = [ml1 ml2];
 
 mm1 = 50; %kg
 mm2 = 50; %kg
+mm = [mm1 mm2];
 
 % dimensions
 l1 = 0.5; %m
 l2 = 0.5; %m
+l = [l1 l2];
 
 a1 = 1; %m
 a2 = 1; %m
@@ -19,16 +22,23 @@ a2 = 1; %m
 % Inertia moment
 Il1 = 10; %kgm^2
 Il2 = 10; %kgm^2
+Il = [Il1 Il2];
 
 Im1 = 0.01; %kgm^2
 Im2 = 0.01; %kgm^2
+Im = [Im1 Im2];
 
 % Reduction
 Kr1 = 100;
 Kr2 = 100;
+Kr = [Kr1 Kr2];
 
 % initial values
 q0 = [0 0 0 0]';
+
+% gravity 
+g = 9.8;
+
 % M_ matriz
 b11 = Il1 + ml1*l1^2+(Kr1^2)*Im1 + Il2 + ml2*(a1^2+l2^2) + Im2 + mm2*a1^2;
 b12 = Il2 + ml2*l2^2 + Kr2*Im2;
@@ -52,14 +62,14 @@ Kd = 2*zeta*wn;
 traj = ["rapida" "lenta"];
 
 for traj_switch = 0:1
-    out = sim('pd_ctrl.slx',5);
+    out = sim('pd_ctrl2.slx',5);
 
     % Position
     figure
     subplot(2,1,1)
     plot(out.q)
     hold on
-    plot(out.qd)
+    plot(out.qd,"--")
     title("Comparacao de posicao para trajetoria "+traj(traj_switch+1),"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
@@ -69,7 +79,7 @@ for traj_switch = 0:1
     subplot(2,1,2)
     plot(out.qdot)
     hold on
-    plot(out.qddot)
+    plot(out.qddot,"--")
     title("Comparacao de velocidade para trajetoria "+traj(traj_switch+1),"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
@@ -89,16 +99,17 @@ end
 %% Plots mod ml2
 
 ml2 = 60; %kg
+ml = [ml1 ml2];
 
 for traj_switch = 0:1
-    out = sim('pd_ctrl.slx',5);
+    out = sim('pd_ctrl2.slx',5);
 
     % Position
     figure
     subplot(2,1,1)
     plot(out.q)
     hold on
-    plot(out.qd)
+    plot(out.qd,"--")
     title({"Comparacao de posicao para trajetoria "+traj(traj_switch+1)+" com $ m_{l_2} $ modificada"},"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
@@ -108,7 +119,7 @@ for traj_switch = 0:1
     subplot(2,1,2)
     plot(out.qdot)
     hold on
-    plot(out.qddot)
+    plot(out.qddot,"--")
     title({"Comparacao de velocidade para trajetoria "+traj(traj_switch+1)+" com $ m_{l_2} $ modificada"},"Interpreter","latex")
     xlabel("$t$","Interpreter","latex")
     ylabel("$\theta(t)$","Interpreter","latex")
